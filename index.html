@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./public/style-index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Jeu de Hex</title>
+</head>
+
+<body class="background">
+    <div id="joueursL"></div>
+    <div id="spectateursL"></div>
+    </div>
+    <div id="statusJoueurConteneur"></div>
+
+    <!--<button id="btnReculer" onclick="reculer()" aria-label="Reculer">Reculer</button>
+    <button id="btnAvancer" onclick="avancer()" aria-label="Avancer">Avancer</button>-->
+
+    <!-- Modal Bootstrap -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Inscription</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <!-- Champ de pseudo -->
+                        <div class="mb-3">
+                            <label for="nom" class="form-label">Pseudo</label>
+                            <input type="text" class="form-control" id="nom" placeholder="Votre pseudo"
+                                aria-label="Pseudo" minlength="3" maxlength="30" autofocus>
+                        </div>
+                        <div class="alert alert-danger my-2 hidden" id="inscriptionErr"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <!-- Bouton pour valider -->
+                    <button type="button" class="btn btn-success" id="entree-partie-btn"
+                        aria-label="Entrer dans la partie">
+                        <i class="fa-regular fa-circle-check"></i> Valider
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="finPartieModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Fin de la partie !</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="messageVictoire" class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="relancerPartieBtn" class="btn btn-success"
+                        data-bs-dismiss="modal">Relancer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="AbandonPartieModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Abandon de la partie !</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Un joueur vient de quitter la partie...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="abandonPartieButton" data-bs-dismiss="modal">Je
+                        comprends</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden" id="container-info-logged"></div>
+
+    <div class="main-container">
+        <div class="container-chat-box">
+            <div class="flex-box-chat">
+                <div id="zone-chat" class="chat-text"></div>
+            </div>
+            <div class="flex-box-message">
+                <input autocomplete="off" type="text" class="message-input" id="messageChat" placeholder="Votre message"
+                    aria-label="Message">
+            </div>
+        </div>
+        <div id="tablier"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./public/client.js"></script>
+</body>
+
+</html>
